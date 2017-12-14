@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"github.com/go-kit/kit/endpoint"
-	dm "sfai/algo-platform/krishna-scheduler/manager/data_manager"
 	"time"
 )
 
@@ -38,7 +37,7 @@ func MakeGetOrderEndpoint(s IOrderService) endpoint.Endpoint {
 			if err != nil {
 				return CommonResponse{
 					Success:      false,
-					Date:         time.Now().Format(dm.DATE_TIME_FORMAT),
+					Date:         time.Now().Format("2006-01-02 15:04:05"),
 					ErrorCode:    "",
 					ErrorMessage: err.Error(),
 					Version:      "v1",
@@ -46,14 +45,14 @@ func MakeGetOrderEndpoint(s IOrderService) endpoint.Endpoint {
 			}
 			return CommonResponse{
 				Success: true,
-				Date:    time.Now().Format(dm.DATE_TIME_FORMAT),
+				Date:    time.Now().Format("2006-01-02 15:04:05"),
 				Version: "v1",
 				Obj:     route,
 			}, nil
 		} else {
 			return CommonResponse{
 				Success:      false,
-				Date:         time.Now().Format(dm.DATE_TIME_FORMAT),
+				Date:         time.Now().Format("2006-01-02 15:04:05"),
 				ErrorCode:    "",
 				ErrorMessage: ERROR_TYPE_ASSERTION.Error(),
 				Version:      "v1",
@@ -69,7 +68,7 @@ func MakeAddOrderEndpoint(s IOrderService) endpoint.Endpoint {
 			if err != nil {
 				return CommonResponse{
 					Success:      false,
-					Date:         time.Now().Format(dm.DATE_TIME_FORMAT),
+					Date:         time.Now().Format("2006-01-02 15:04:05"),
 					ErrorCode:    "",
 					ErrorMessage: err.Error(),
 					Version:      "v1",
@@ -77,13 +76,13 @@ func MakeAddOrderEndpoint(s IOrderService) endpoint.Endpoint {
 			}
 			return CommonResponse{
 				Success: true,
-				Date:    time.Now().Format(dm.DATE_TIME_FORMAT),
+				Date:    time.Now().Format("2006-01-02 15:04:05"),
 				Version: "v1",
 			}, nil
 		} else {
 			return CommonResponse{
 				Success:      false,
-				Date:         time.Now().Format(dm.DATE_TIME_FORMAT),
+				Date:         time.Now().Format("2006-01-02 15:04:05"),
 				ErrorCode:    "",
 				ErrorMessage: ERROR_TYPE_ASSERTION.Error(),
 				Version:      "v1",
