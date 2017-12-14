@@ -1,5 +1,4 @@
-.idea
-
+.DS_Store
 node_modules/
 /dist/
 npm-debug.log*
@@ -12,3 +11,7 @@ selenium-debug.log
 # Editor directories and files
 .idea
 .vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
