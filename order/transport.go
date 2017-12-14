@@ -23,10 +23,10 @@ func MakeHttpHandler(s IOrderService, logger log.Logger) http.Handler {
 	}
 
 	getOrderEndpoint := MakeGetOrderEndpoint(s)
-	getOrderEndpoint = ratelimit.NewErroringLimiter(rate.NewLimiter(rate.Every(time.Second), 1))(getOrderEndpoint)
+	getOrderEndpoint = ratelimit.NewErroringLimiter(rate.NewLimiter(rate.Every(time.Nanosecond), 1))(getOrderEndpoint)
 	getOrderEndpoint = circuitbreaker.Gobreaker(gobreaker.NewCircuitBreaker(gobreaker.Settings{}))(getOrderEndpoint)
 	addOrderEndpoint := MakeAddOrderEndpoint(s)
-	addOrderEndpoint = ratelimit.NewErroringLimiter(rate.NewLimiter(rate.Every(time.Second), 1))(addOrderEndpoint)
+	addOrderEndpoint = ratelimit.NewErroringLimiter(rate.NewLimiter(rate.Every(time.Nanosecond), 1))(addOrderEndpoint)
 	addOrderEndpoint = circuitbreaker.Gobreaker(gobreaker.NewCircuitBreaker(gobreaker.Settings{}))(addOrderEndpoint)
 	router.Methods("GET").
 		Path("/order/{id}").
