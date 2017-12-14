@@ -1,34 +1,40 @@
 package main
 
 import (
-"flag"
-"fmt"
-or "preparathon/order"
-kitlog "github.com/go-kit/kit/log"
-"net/http"
-"os"
-"os/signal"
-"syscall"
+	"flag"
+	"fmt"
+	kitlog "github.com/go-kit/kit/log"
+	"net/http"
+	"os"
+	"os/signal"
+	order "preparation/order"
+	"syscall"
 )
 
 func main() {
 	var (
-		msyql        =flag.String("mysqlUrl","localhost:3306","")
+		mysqlUrl      = flag.String("mysqlUrl", "localhost", "")
+		mysqlPort     = flag.String("mysqlPort", "3306", "")
+		mysqlUsername = flag.String("mysqlUsername", "root", "")
+		mysqlPassword = flag.String("mysqlPassword", "root", "")
+		mysqlDBName   = flag.String("mysqlDBName", "preparation", "")
 		httpAddr      = flag.String("addr", ":8848", "The address of listen and serve")
 	)
 	flag.Parse()
 	var logger kitlog.Logger
 	logger = kitlog.NewJSONLogger(os.Stderr)
-	var orderDao or.IOrderDao
-	var orderService or.IOrderService
+	var orderDao order.IOrderDao
+	var orderService order.IOrderService
 	errs := make(chan error)
 	var err error
-	orderDao, err = or.NewOrderDao(*msyql,"" ,logger)
+	//init DB
+	order.NewMysqlManager(*mysqlUrl, *mysqlPort, *mysqlDBName, *mysqlUsername, *mysqlPassword,logger)
+	orderDao, err = order.NewOrderDao(logger)
 	if err != nil {
 		errs <- err
 	}
-	orderService =or.NewOrderService(orderDao)
-	httpHandler := or.MakeHttpHandler(orderService, logger)
+	orderService = order.NewOrderService(orderDao)
+	httpHandler := order.MakeHttpHandler(orderService, logger)
 	go func() {
 		c := make(chan os.Signal)
 		signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
@@ -40,4 +46,3 @@ func main() {
 	}()
 	logger.Log("exit:", <-errs)
 }
-

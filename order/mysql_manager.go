@@ -18,7 +18,7 @@ type MysqlManager struct {
 	Database string
 	Username string
 	Password string
-	logger   kitlog.Logger
+	Logger   kitlog.Logger
 }
 
 type User struct {
@@ -30,13 +30,14 @@ func (u *User) TableName() string {
 	return "m_user"
 }
 
-func NewMysqlManager(host, port, database, username, passowrd string) *MysqlManager {
+func NewMysqlManager(host, port, database, username, password string, logger kitlog.Logger) *MysqlManager {
 	mysqlMgr := &MysqlManager{
 		Host:     host,
 		Port:     port,
 		Database: database,
 		Username: username,
-		Password: passowrd,
+		Password: password,
+		Logger:logger,
 	}
 	mysqlMgr.init()
 	return mysqlMgr
@@ -49,7 +50,7 @@ func (mm *MysqlManager) init() {
 	if err != nil {
 		panic(err)
 	}
-	mm.logger.Log("Database initialize complete")
+	mm.Logger.Log("Database initialize complete")
 	orm.RegisterModel(new(User))
 }
 
