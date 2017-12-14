@@ -3,9 +3,6 @@ package order
 import (
 	"github.com/astaxie/beego/orm"
 	kitlog "github.com/go-kit/kit/log"
-
-	"time"
-	"strconv"
 )
 
 /**
@@ -49,34 +46,34 @@ func NewOrderDao(log kitlog.Logger) (*OrderDao, error) {
 }
 
 func (m *OrderDao) Insert(r *Order) error {
-	o := orm.NewOrm()
-	_, err := o.Insert(r)
-	if err != nil {
-		m.log.Log("Cannot insert record %v, err: %v", r, err)
-	}
-	return err
+	//o := orm.NewOrm()
+	//_, err := o.Insert(r)
+	//if err != nil {
+	//	m.log.Log("Cannot insert record %v, err: %v", r, err)
+	//}
+	return nil
 }
 
 func (m *OrderDao) Select(id string) (*Order, error) {
-	intId, err := strconv.Atoi(id)
-	if err != nil {
-		return nil, err
-	}
-	order := Order{Id:intId}
-	o := orm.NewOrm()
-	err = o.QueryTable(TABLE_NAME_ORDER).One(&order)
-	if err != nil {
-		m.log.Log("Cannot insert record id %d, err: %v", id, err)
-	}
+	//intId, err := strconv.Atoi(id)
+	//if err != nil {
+	//	return nil, err
+	//}
+	order := Order{Id:id}
+	//o := orm.NewOrm()
+	//err := o.QueryTable(TABLE_NAME_ORDER).One(&order)
+	//if err != nil {
+	//	m.log.Log("Cannot insert record id %d, err: %v", id, err)
+	//}
 	return &order, nil
 }
 
 func (m *OrderDao) Cancel(id string) error {
-	intId, err := strconv.Atoi(id)
-	if err != nil {
-		return err
-	}
-	order := Order{Id:intId, Status:0}
+	//intId, err := strconv.Atoi(id)
+	//if err != nil {
+	//	return err
+	//}
+	order := Order{Id:id, Status:0}
 	o := orm.NewOrm()
 	count, err := o.Update(order)
 	if err != nil {

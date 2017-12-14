@@ -20,6 +20,7 @@ func NewLoggingMiddleware(logger log.Logger, s IOrderService) *LoggingMiddleware
 
 func (l *LoggingMiddleware) Order(ctx context.Context, r *Order) error {
 	//TODO log
+	l.logger.Log("order",r)
 	return l.next.Order(ctx, r)
 }
 

@@ -5,6 +5,8 @@ import (
 	"encoding/json"
 	"github.com/go-kit/kit/log"
 	kithttp "github.com/go-kit/kit/transport/http"
+	kitprometheus "github.com/go-kit/kit/metrics/prometheus"
+	stdprometheus "github.com/prometheus/client_golang/prometheus"
 	"github.com/gorilla/mux"
 	"net/http"
 	"github.com/go-kit/kit/ratelimit"
@@ -21,12 +23,25 @@ func MakeHttpHandler(s IOrderService, logger log.Logger) http.Handler {
 	options := []kithttp.ServerOption{
 		kithttp.ServerErrorLogger(logger),
 	}
-
+	fieldKeys := []string{"method"}
+    s=NewInstrumentingService(kitprometheus.NewCounterFrom(stdprometheus.CounterOpts{
+		Namespace: "api",
+		Subsystem: "order", //不能用中横线,引发panic,命名合法性reg:[a-zA-Z_:][a-zA-Z0-9_:]*
+		Name:      "request_count",
+		Help:      "Number of requests received.",
+	}, fieldKeys),
+		kitprometheus.NewSummaryFrom(stdprometheus.SummaryOpts{
+			Namespace: "api",
+			Subsystem: "order",
+			Name:      "request_latency_microseconds",
+			Help:      "Total duration of request in microseconds.",
+		}, fieldKeys),
+		s)
 	getOrderEndpoint := MakeGetOrderEndpoint(s)
-	getOrderEndpoint = ratelimit.NewErroringLimiter(rate.NewLimiter(rate.Every(time.Nanosecond), 1))(getOrderEndpoint)
+	getOrderEndpoint = ratelimit.NewErroringLimiter(rate.NewLimiter(rate.Every(time.Second), 1))(getOrderEndpoint)
 	getOrderEndpoint = circuitbreaker.Gobreaker(gobreaker.NewCircuitBreaker(gobreaker.Settings{}))(getOrderEndpoint)
 	addOrderEndpoint := MakeAddOrderEndpoint(s)
-	addOrderEndpoint = ratelimit.NewErroringLimiter(rate.NewLimiter(rate.Every(time.Nanosecond), 1))(addOrderEndpoint)
+	addOrderEndpoint = ratelimit.NewErroringLimiter(rate.NewLimiter(rate.Every(time.Second), 1))(addOrderEndpoint)
 	addOrderEndpoint = circuitbreaker.Gobreaker(gobreaker.NewCircuitBreaker(gobreaker.Settings{}))(addOrderEndpoint)
 	router.Methods("GET").
 		Path("/order/{id}").
@@ -50,7 +65,7 @@ func MakeHttpHandler(s IOrderService, logger log.Logger) http.Handler {
 }
 
 func decodeAddOrderRequest(ctx context.Context, r *http.Request) (request interface{}, err error) {
-	var req GetOrderRequest
+	var req *Order
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		return nil, err
 	}

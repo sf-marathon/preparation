@@ -16,8 +16,8 @@ func main() {
 		mysqlUrl      = flag.String("mysqlUrl", "localhost", "")
 		mysqlPort     = flag.String("mysqlPort", "3306", "")
 		mysqlUsername = flag.String("mysqlUsername", "root", "")
-		mysqlPassword = flag.String("mysqlPassword", "root", "")
-		mysqlDBName   = flag.String("mysqlDBName", "preparation", "")
+		mysqlPassword = flag.String("mysqlPassword", "123456", "")
+		mysqlDBName   = flag.String("mysqlDBName", "marathon", "")
 		httpAddr      = flag.String("addr", ":8848", "The address of listen and serve")
 	)
 	flag.Parse()
@@ -34,6 +34,7 @@ func main() {
 		errs <- err
 	}
 	orderService = order.NewOrderService(orderDao)
+	orderService=order.NewLoggingMiddleware(logger,orderService)
 	httpHandler := order.MakeHttpHandler(orderService, logger)
 	go func() {
 		c := make(chan os.Signal)

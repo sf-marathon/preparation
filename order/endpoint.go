@@ -16,7 +16,7 @@ type GetOrderRequest struct {
 }
 
 type AddOrderRequest struct {
-	route *Order
+	route Order
 }
 
 type CommonResponse struct {
@@ -63,8 +63,8 @@ func MakeGetOrderEndpoint(s IOrderService) endpoint.Endpoint {
 
 func MakeAddOrderEndpoint(s IOrderService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
-		if req, ok := request.(AddOrderRequest); ok {
-			err := s.Order(ctx, req.route)
+		if req, ok := request.(*Order); ok {
+			err := s.Order(ctx, req)
 			if err != nil {
 				return CommonResponse{
 					Success:      false,
