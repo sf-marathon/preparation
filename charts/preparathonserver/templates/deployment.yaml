@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "preparathon.fullname" . }}
+  name: {{ template "preparathonserver.fullname" . }}
   labels:
-    app: {{ template "preparathon.name" . }}
+    app: {{ template "preparathonserver.name" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -12,16 +12,31 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "preparathon.name" . }}
+        app: {{ template "preparathonserver.name" . }}
         release: {{ .Release.Name }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "mysql.fullname" . }}
+                  key: mysql-root-password
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "redis.fullname" . }}
+                  key: redis-password
           args:
-            - /run.sh
-            - {{ template "preparathonserver.fullname" . }}
+            - sh
+            - -c
+            - preparathonserver --mysql-host "{{ template "mysql.fullname" . }}" \
+              --mysql-port 3306 --mysql-root-password "$MYSQL_ROOT_PASSWORD" \
+              --redis-rawurl "redis://admin:$REDIS_PASSWORD@{{ template "redis.fullname" . }}:6379/1" \
+              --bind-port "{{ .Values.service.internalPort }}"
           ports:
             - containerPort: {{ .Values.service.internalPort }}
           livenessProbe:

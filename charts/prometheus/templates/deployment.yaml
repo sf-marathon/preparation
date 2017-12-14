@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "preparathon-server.fullname" . }}
+  name: {{ template "prometheus.fullname" . }}
   labels:
-    app: {{ template "preparathon-server.name" . }}
+    app: {{ template "prometheus.name" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "preparathon-server.name" . }}
+        app: {{ template "prometheus.name" . }}
         release: {{ .Release.Name }}
     spec:
       containers:

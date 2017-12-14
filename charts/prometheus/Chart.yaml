@@ -1,4 +1,4 @@
 apiVersion: v1
 description: A Helm chart for Kubernetes
-name: preparathon-server
+name: prometheus
 version: 0.1.0

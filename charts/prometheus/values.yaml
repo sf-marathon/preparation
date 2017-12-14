@@ -1,16 +1,16 @@
-# Default values for preparathon.
+# Default values for prometheus.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: preparathon
-  tag: 0.1
+  repository: prometheus
+  tag: latest
   pullPolicy: IfNotPresent
 service:
-  name: preparathon
+  name: prometheus
   type: NodePort
-  externalPort: 80
-  internalPort: 80
+  externalPort: 9090
+  internalPort: 9090
 ingress:
   enabled: false
   # Used to create an Ingress record.
