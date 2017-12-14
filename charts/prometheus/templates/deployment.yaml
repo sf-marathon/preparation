@@ -29,6 +29,16 @@ spec:
             httpGet:
               path: /
               port: {{ .Values.service.internalPort }}
+          volumeMounts:
+          - name: configuration
+            mountPath: /etc/prometheus
+        volumes:
+        - name: configuration
+          configMap:
+            name: {{ template "prometheus.fullname" . }}
+            items:
+              - key: prometheus.yml
+                path: prometheus.yml
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- if .Values.nodeSelector }}
