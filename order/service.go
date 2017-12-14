@@ -10,7 +10,7 @@ type IOrderService interface {
 }
 
 type OrderService struct {
-	orderDao OrderDao
+	orderDao IOrderDao
 }
 
 func NewOrderService(orderDao IOrderDao) *OrderService {
