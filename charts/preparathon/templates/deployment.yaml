@@ -19,6 +19,9 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - /run.sh
+            - {{ template "preparathonserver.fullname" . }}
           ports:
             - containerPort: {{ .Values.service.internalPort }}
           livenessProbe:
