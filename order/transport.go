@@ -13,6 +13,7 @@ import (
 	"time"
 	"github.com/go-kit/kit/circuitbreaker"
 	"github.com/sony/gobreaker"
+	"errors"
 )
 
 func MakeHttpHandler(s IOrderService, logger log.Logger) http.Handler {
@@ -61,7 +62,7 @@ func decodeGetOrderRequest(_ context.Context, r *http.Request) (request interfac
 	vars := mux.Vars(r)
 	id, ok := vars["id"]
 	if !ok {
-		return nil, profilesvc.ErrBadRouting
+		return nil,errors.New("param err")
 	}
 	return GetOrderRequest{Id: id}, nil
 }
