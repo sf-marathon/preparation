@@ -20,8 +20,13 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
-            - /run.sh
-            - {{ template "preparathonserver.fullname" . }}
+            - sh
+            - -c
+            - sed -i "s/PREPARATHONSERVER_ADDR/$PREPARATHONSERVER_ADDR/" /etc/nginx/nginx.conf && \
+              nginx -g "daemon off;"
+          env:
+            - name: PREPARATHONSERVER_ADDR
+              value: {{ template "preparathonserver.fullname" . }}
           ports:
             - containerPort: {{ .Values.service.internalPort }}
           livenessProbe:
