@@ -3,6 +3,20 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "Ba9moJKp0ssS+S7v2Zhl0zVmV6U=",
+			"origin": "sfai/algo-platform/vendor/github.com/FZambia/go-sentinel",
+			"path": "github.com/FZambia/go-sentinel",
+			"revision": "7b68de57c6f070572019b11915eadf1d86d13c12",
+			"revisionTime": "2017-12-14T05:40:13Z"
+		},
+		{
+			"checksumSHA1": "9cl7+wv0GvxpQV+HOtV93F9pbmE=",
+			"origin": "sfai/algo-platform/vendor/github.com/Sirupsen/logrus",
+			"path": "github.com/Sirupsen/logrus",
+			"revision": "7b68de57c6f070572019b11915eadf1d86d13c12",
+			"revisionTime": "2017-12-14T05:40:13Z"
+		},
+		{
 			"checksumSHA1": "nGg8RnGMNnWG1e5auZ/LPn1whJg=",
 			"path": "github.com/afex/hystrix-go/hystrix",
 			"revision": "f118cd938f786d24f46cc307981d8f63b7951020",
@@ -33,6 +47,20 @@
 			"revisionTime": "2017-10-19T21:57:19Z"
 		},
 		{
+			"checksumSHA1": "2UmMbNHc8FBr98mJFN1k8ISOIHk=",
+			"origin": "sfai/algo-platform/vendor/github.com/garyburd/redigo/internal",
+			"path": "github.com/garyburd/redigo/internal",
+			"revision": "7b68de57c6f070572019b11915eadf1d86d13c12",
+			"revisionTime": "2017-12-14T05:40:13Z"
+		},
+		{
+			"checksumSHA1": "LdE5ctDNxPmhrodnvHcRpfX6RAw=",
+			"origin": "sfai/algo-platform/vendor/github.com/garyburd/redigo/redis",
+			"path": "github.com/garyburd/redigo/redis",
+			"revision": "7b68de57c6f070572019b11915eadf1d86d13c12",
+			"revisionTime": "2017-12-14T05:40:13Z"
+		},
+		{
 			"checksumSHA1": "g+nsUT4TeGjXJmax6G2hhZB5SQE=",
 			"path": "github.com/go-kit/kit/auth/jwt",
 			"revision": "e3b2152e0063c5f05efea89ecbe297852af2a92d",
@@ -51,6 +79,12 @@
 			"revisionTime": "2017-06-06T12:20:16Z"
 		},
 		{
+			"checksumSHA1": "yd0d4si0RYnnwKYvv8r1x1QVgtM=",
+			"path": "github.com/go-kit/kit/examples/profilesvc",
+			"revision": "1b4cf21e19ea1dae31038b02c4982eea5b4214b7",
+			"revisionTime": "2017-12-12T17:42:20Z"
+		},
+		{
 			"checksumSHA1": "bzCBeQrZ+LxbYyJbp7uDILX6t7c=",
 			"path": "github.com/go-kit/kit/log",
 			"revision": "4d3c82de4829f7c3752cf66d00d6ecdf913a18f3",
@@ -67,6 +101,12 @@
 			"path": "github.com/go-kit/kit/metrics/internal/lv",
 			"revision": "4d3c82de4829f7c3752cf66d00d6ecdf913a18f3",
 			"revisionTime": "2017-06-06T12:20:16Z"
+		},
+		{
+			"checksumSHA1": "t8CEfM4BLNrBUS+rHuQnLxBN0z4=",
+			"path": "github.com/go-kit/kit/metrics/internal/ratemap",
+			"revision": "1b4cf21e19ea1dae31038b02c4982eea5b4214b7",
+			"revisionTime": "2017-12-12T17:42:20Z"
 		},
 		{
 			"checksumSHA1": "hArYy708bvIGnxJIC/Tr/ehkUms=",
@@ -159,6 +199,13 @@
 			"revisionTime": "2016-04-24T11:30:07Z"
 		},
 		{
+			"checksumSHA1": "2jsbDTvwxafPp7FJjJ8IIFlTLjs=",
+			"origin": "sfai/algo-platform/vendor/github.com/mohae/deepcopy",
+			"path": "github.com/mohae/deepcopy",
+			"revision": "7b68de57c6f070572019b11915eadf1d86d13c12",
+			"revisionTime": "2017-12-14T05:40:13Z"
+		},
+		{
 			"checksumSHA1": "hu0MsbTdFzZxNRyAxe2HmTFFFak=",
 			"path": "github.com/prometheus/client_golang/prometheus",
 			"revision": "5cec1d0429b02e4323e042eb04dafdb079ddf568",
@@ -207,6 +254,20 @@
 			"revisionTime": "2017-10-17T21:40:25Z"
 		},
 		{
+			"checksumSHA1": "bOUCnFlRuGN/E633R/lFuiWVrkk=",
+			"origin": "sfai/algo-platform/vendor/github.com/robfig/cron",
+			"path": "github.com/robfig/cron",
+			"revision": "7b68de57c6f070572019b11915eadf1d86d13c12",
+			"revisionTime": "2017-12-14T05:40:13Z"
+		},
+		{
+			"checksumSHA1": "zmC8/3V4ls53DJlNTKDZwPSC/dA=",
+			"origin": "sfai/algo-platform/vendor/github.com/satori/go.uuid",
+			"path": "github.com/satori/go.uuid",
+			"revision": "7b68de57c6f070572019b11915eadf1d86d13c12",
+			"revisionTime": "2017-12-14T05:40:13Z"
+		},
+		{
 			"checksumSHA1": "6HQLUzskMvCLHDJ0msFjZ8IDqqI=",
 			"path": "github.com/sony/gobreaker",
 			"revision": "3cb67c77c1d1e72fda30c6970578164d24f806b6",
@@ -217,6 +278,13 @@
 			"path": "github.com/streadway/handy/breaker",
 			"revision": "f450267a206e480d863d2a92846a40f6e2896b2a",
 			"revisionTime": "2016-04-02T20:03:21Z"
+		},
+		{
+			"checksumSHA1": "nqWNlnMmVpt628zzvyo6Yv2CX5Q=",
+			"origin": "sfai/algo-platform/vendor/golang.org/x/crypto/ssh/terminal",
+			"path": "golang.org/x/crypto/ssh/terminal",
+			"revision": "7b68de57c6f070572019b11915eadf1d86d13c12",
+			"revisionTime": "2017-12-14T05:40:13Z"
 		},
 		{
 			"checksumSHA1": "GtamqiJoL7PGHsN454AoffBFMa8=",
@@ -259,6 +327,20 @@
 			"path": "golang.org/x/net/trace",
 			"revision": "c7086645de248775cbf2373cf5ca4d2fa664b8c1",
 			"revisionTime": "2017-11-10T09:49:23Z"
+		},
+		{
+			"checksumSHA1": "uggjqMBFNJd11oNco2kbkAT641w=",
+			"origin": "sfai/algo-platform/vendor/golang.org/x/sys/unix",
+			"path": "golang.org/x/sys/unix",
+			"revision": "7b68de57c6f070572019b11915eadf1d86d13c12",
+			"revisionTime": "2017-12-14T05:40:13Z"
+		},
+		{
+			"checksumSHA1": "pBPFzDGt3AVSRffB7ffiUnruFUk=",
+			"origin": "sfai/algo-platform/vendor/golang.org/x/sys/windows",
+			"path": "golang.org/x/sys/windows",
+			"revision": "7b68de57c6f070572019b11915eadf1d86d13c12",
+			"revisionTime": "2017-12-14T05:40:13Z"
 		},
 		{
 			"checksumSHA1": "tltivJ/uj/lqLk05IqGfCv2F/E8=",
@@ -421,7 +503,31 @@
 			"path": "google.golang.org/grpc/transport",
 			"revision": "10873b30bf245efc365a957b425da2e15f47a560",
 			"revisionTime": "2017-11-22T21:59:20Z"
+		},
+		{
+			"checksumSHA1": "eKDwxrwjR5vLZ56HlHbQIO5Tgmg=",
+			"path": "preparathon/order",
+			"revision": "ec4b1342093bf7b51ae546af7706133ee9070807",
+			"revisionTime": "2017-12-14T08:34:03Z"
+		},
+		{
+			"checksumSHA1": "bzp9/eiTqG9GQpNmj4QgJRHvr6g=",
+			"path": "sfai/algo-platform/krishna-scheduler/manager/data_manager",
+			"revision": "7b68de57c6f070572019b11915eadf1d86d13c12",
+			"revisionTime": "2017-12-14T05:40:13Z"
+		},
+		{
+			"checksumSHA1": "IxNU2vyHm8Jiwfo59nQxMWE5DHs=",
+			"path": "sfai/algo-platform/krishna-scheduler/utils",
+			"revision": "7b68de57c6f070572019b11915eadf1d86d13c12",
+			"revisionTime": "2017-12-14T05:40:13Z"
+		},
+		{
+			"checksumSHA1": "tUR7RrIjjAzdxOVstlmzoUO2FnU=",
+			"path": "sfai/algo-platform/vrppdtw",
+			"revision": "7b68de57c6f070572019b11915eadf1d86d13c12",
+			"revisionTime": "2017-12-14T05:40:13Z"
 		}
 	],
-	"rootPath": "aging-svc-with-go-kit"
+	"rootPath": "preparation"
 }
