@@ -7,7 +7,6 @@ import (
 	kithttp "github.com/go-kit/kit/transport/http"
 	"github.com/gorilla/mux"
 	"net/http"
-	"github.com/go-kit/kit/examples/profilesvc"
 	"github.com/go-kit/kit/ratelimit"
 	"golang.org/x/time/rate"
 	"time"
